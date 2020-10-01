@@ -1,5 +1,5 @@
 def findBiggestNumbersRange(sequence):
-        if len(sequence) != 1:
+    if len(sequence) != 1:
         sequence = tuple(sorted(set(sequence)))
         result_list, res = [], []
         for i in sequence:
@@ -11,7 +11,6 @@ def findBiggestNumbersRange(sequence):
                 result_list.append(res)
                 res = []
                 res.append(i)
-
         result_list.append(res)
         res = [len(result_list[i]) for i in range(len(result_list))]
         max_index_res = max(map(int, res))
