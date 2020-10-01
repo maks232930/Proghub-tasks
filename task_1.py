@@ -1,34 +1,22 @@
 def findBiggestNumbersRange(sequence):
-    if len(sequence) != 1:
-        sequence = set(sequence)
-        sequence = sorted(list(sequence))
-        result_list = []
-        res = []
+        if len(sequence) != 1:
+        sequence = tuple(sorted(set(sequence)))
+        result_list, res = [], []
         for i in sequence:
             if len(res) < 1:
-                res.append(int(i))
-            elif i == res[-1]:
                 res.append(i)
-                result_list.append(res)
-                res = []
             elif i == (res[-1] + 1):
                 res.append(i)
-                if sequence.index(i) == (len(sequence) - 1):
-                    result_list.append(res)
-                    res = []
             else:
                 result_list.append(res)
                 res = []
                 res.append(i)
 
-        for i in range(len(result_list)):
-            res.append(len(result_list[i]))
-
-        max_index_res = max(res)
+        result_list.append(res)
+        res = [len(result_list[i]) for i in range(len(result_list))]
+        max_index_res = max(map(int, res))
         result_index = res.index(max_index_res)
-        result_list = result_list[result_index]
-
-        return [result_list[-0], result_list[-1]]
+        return [result_list[result_index][0], result_list[result_index][-1]]
     else:
         return [sequence[0], sequence[0]]
 
